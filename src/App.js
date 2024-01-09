@@ -1,23 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import AddEmployeeContainer from "./containers/AddEmployeeContainer";
+import DeleteEmployeeContainer from "./containers/DeleteEmployeeContainer";
+import EmployeeRecordContainer from "./containers/EmployeeRecordContainer";
+import UpdateEmployeeContainer from "./containers/UpdateEmployeeContainer";
+import Footer from "./components/Navigation/Footer";
+import "./App.css";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="ui container">
+      <Router>
+        <section className="routed-content-section">
+          <Routes>
+            <Route path="/" exact element={<EmployeeRecordContainer />}></Route>
+            <Route
+              path="/employees/show"
+              exact
+              element={<EmployeeRecordContainer />}
+            ></Route>
+            <Route
+              path="/employees/new"
+              exact
+              element={<AddEmployeeContainer />}
+            ></Route>
+            <Route
+              path="/employees/edit/:id"
+              exact
+              element={<UpdateEmployeeContainer />}
+            ></Route>
+            <Route
+              path="/employees/delete/:id"
+              exact
+              element={<DeleteEmployeeContainer />}
+            ></Route>
+          </Routes>
+        </section>
+        <Footer />
+      </Router>
     </div>
   );
 }
